@@ -80,7 +80,7 @@ body.vazir input {
     margin: 15px 0;
     background-color: transparent;
     overflow-y: auto;
-    max-height: 60vh;
+    max-height: 40vh;
     padding: 2px 0;
     scrollbar-width: none;
     -ms-overflow-style: none;
