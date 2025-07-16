@@ -2,13 +2,13 @@
 
 @font-face {
     font-family: Shabnam;
-    src: url('../fonts/Shabnam.woff2') format('woff2'), url('fonts/Shabnam.woff') format('woff');
+    src: url('fonts/Shabnam.woff2') format('woff2'), url('fonts/Shabnam.woff') format('woff');
     font-display: swap;
 }
 
 @font-face {
     font-family: Vazir;
-    src: url('../fonts/Vazir.woff2') format('woff2'), url('fonts/Vazir.woff') format('woff');
+    src: url('fonts/Vazir.woff2') format('woff2'), url('fonts/Vazir.woff') format('woff');
     font-display: swap;
 }
 
