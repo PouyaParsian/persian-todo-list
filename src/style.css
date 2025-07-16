@@ -1,0 +1,358 @@
+/* Font Definitions */
+
+@font-face {
+    font-family: Shabnam;
+    src: url('../fonts/Shabnam.woff2') format('woff2'), url('fonts/Shabnam.woff') format('woff');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Vazir;
+    src: url('../fonts/Vazir.woff2') format('woff2'), url('fonts/Vazir.woff') format('woff');
+    font-display: swap;
+}
+
+
+/* Theme Variables */
+
+:root {
+    --box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.dark {
+    --color1: #212333;
+    --color2: #2e3147;
+    --color3: #e74c3c;
+    --color4: white;
+}
+
+.light {
+    --color1: whitesmoke;
+    --color2: white;
+    --color3: #e74c3c;
+    --color4: black;
+}
+
+
+/* General Styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Shabnam, Vazir, sans-serif;
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--color1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+    direction: rtl;
+}
+
+body.shabnam,
+body.shabnam button,
+body.shabnam input {
+    font-family: Shabnam, sans-serif;
+}
+
+body.vazir,
+body.vazir button,
+body.vazir input {
+    font-family: Vazir, sans-serif;
+}
+
+.container {
+    max-width: 500px;
+    width: 90%;
+    direction: rtl;
+    line-height: 1.8;
+}
+
+
+/* Scrollbar Styles */
+
+.todo-list-container {
+    margin: 15px 0;
+    background-color: transparent;
+    overflow-y: auto;
+    max-height: 60vh;
+    padding: 2px 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.todo-list-container::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* Input Container */
+
+.input-container {
+    background-color: var(--color2);
+    padding: 20px;
+    border-radius: 7px;
+    box-shadow: var(--box-shadow);
+}
+
+.input-container h2 {
+    text-align: center;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: var(--color4);
+}
+
+.input-container div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.input-container input {
+    width: 100%;
+    height: 35px;
+    font-size: 0.95rem;
+    padding: 2px 5px;
+    border-radius: 3px;
+    border: none;
+    background-color: var(--color1);
+    color: var(--color4);
+}
+
+.input-container input:focus {
+    outline: none;
+}
+
+.input-container input::placeholder {
+    color: lightgray;
+}
+
+.light .input-container input::placeholder {
+    color: gray;
+}
+
+.input-container button {
+    border: none;
+    cursor: pointer;
+    height: 35px;
+    width: 40px;
+    border-radius: 3px;
+    background-color: var(--color3);
+    color: var(--color4);
+}
+
+
+/* ToDo List */
+
+.todo-list-container li {
+    list-style: none;
+    margin-top: 15px;
+    background-color: var(--color2);
+    padding: 8px 10px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--color4);
+    box-shadow: var(--box-shadow);
+    white-space: normal;
+    overflow-wrap: break-word;
+    overflow-x: auto;
+}
+
+.todo-list-container li::-webkit-scrollbar {
+    display: none;
+}
+
+.todo-list-container li:first-child {
+    margin-top: 0;
+}
+
+.todo-list-container li:hover button {
+    visibility: visible;
+    opacity: 1;
+}
+
+.todo-list-container button {
+    height: 30px;
+    width: 30px;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--color3);
+    visibility: hidden;
+    font-size: 1rem;
+    opacity: 0;
+    padding-right: 10px;
+    transition: opacity 0.2s, visibility 0.2s;
+}
+
+
+/* Info Container */
+
+.info-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+    background-color: var(--color2);
+    padding: 20px;
+    border-radius: 7px;
+    box-shadow: var(--box-shadow);
+    direction: rtl;
+}
+
+.info-container p {
+    font-size: 1rem;
+    color: var(--color4);
+}
+
+.info-container span {
+    font-weight: bold;
+    color: var(--color3);
+}
+
+.info-container button {
+    border: none;
+    cursor: pointer;
+    height: 35px;
+    width: 100px;
+    border-radius: 3px;
+    background-color: var(--color3);
+    color: var(--color4);
+}
+
+
+/* Settings Menu */
+
+.setting {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 20px;
+}
+
+.setting button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 25px;
+    color: var(--color3);
+}
+
+.menu {
+    margin-top: 30px;
+    background-color: var(--color2);
+    padding: 20px;
+    border-radius: 7px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out, margin-top 0.2s ease-in-out;
+    box-shadow: var(--box-shadow);
+}
+
+.menu.active {
+    opacity: 1;
+    visibility: visible;
+    margin-top: 5px;
+}
+
+.menu h3 {
+    color: var(--color4);
+    margin-bottom: 10px;
+    font-weight: normal;
+    font-size: 15px;
+}
+
+.theme-setting {
+    margin-bottom: 15px;
+}
+
+.menu div {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+    justify-content: right;
+    direction: ltr;
+}
+
+.menu input[type="radio"] {
+    clip: rect(0 0 0 0);
+    clip-path: inset(100%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+.menu input[type="radio"]:checked+span {
+    box-shadow: 0 0 0 0.0625em var(--color3);
+    background-color: var(--color1);
+    z-index: 1;
+    color: var(--color3);
+}
+
+label span {
+    display: block;
+    cursor: pointer;
+    background-color: var(--color2);
+    padding: 0.375em 0.75em;
+    position: relative;
+    margin-left: 0.0625em;
+    box-shadow: 0 0 0 0.0625em #4a5568;
+    color: #a0aec0;
+    text-align: center;
+    transition: background-color 0.5s ease;
+}
+
+.light label span {
+    box-shadow: 0 0 0 0.0625em rgb(175, 175, 175);
+}
+
+label:first-child span {
+    border-radius: 0.375em 0 0 0.375em;
+}
+
+label:last-child span {
+    border-radius: 0 0.375em 0.375em 0;
+}
+
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .input-container h2 {
+        font-size: 1.1rem;
+    }
+
+    .info-container button {
+        width: 80px;
+        font-size: 0.7rem;
+    }
+
+    .info-container p {
+        font-size: 0.85rem;
+    }
+
+    .todo-list-container li {
+        font-size: 0.8rem;
+    }
+
+    .input-container input {
+        font-size: 0.8rem;
+    }
+}

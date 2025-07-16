@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Persian ToDo List - Task Manager</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <!-- Main Container -->
+    <main class="container">
+        <!-- Task Input Section -->
+        <div class="input-container">
+            <h2>لیست کارها</h2>
+            <div>
+                <input type="text" placeholder="متن را اینجا وارد کنید" aria-label="وارد کردن کار جدید" maxlength="40">
+                <button aria-label="افزودن کار جدید"><i class="fa-solid fa-plus"></i></button>
+            </div>
+        </div>
+        <!-- ToDo List Section -->
+        <div class="todo-list-container">
+            <ul></ul>
+        </div>
+        <!-- Info and Clear Section -->
+        <div class="info-container">
+            <p>شما <span>0</span> کار برای انجام دارید</p>
+            <button aria-label="پاک کردن همه کارها">پاک کردن همه</button>
+        </div>
+    </main>
+    <!-- Settings Section -->
+    <div class="setting">
+        <button class="setting-button" aria-label="تنظیمات"><i class="fa fa-cog" aria-hidden="true"></i></button>
+        <div class="menu">
+            <h3>تم</h3>
+            <div class="theme-setting">
+                <label>
+                    <input type="radio" name="theme" id="dark" value="dark"/>
+                    <span>تاریک</span>
+                </label>
+                <label>
+                    <input type="radio" name="theme" checked id="light" value="light"/>
+                    <span>روشن</span>
+                </label>
+            </div>
+            <h3>فونت</h3>
+            <div class="font-setting">
+                <label>
+                    <input type="radio" name="font" id="vazir" value="vazir"/>
+                    <span>وزیر</span>
+                </label>
+                <label>
+                    <input type="radio" name="font" checked id="shabnam" value="shabnam"/>
+                    <span>شبنم</span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <script src="todo.js"></script>
+    <script src="setting.js"></script>
+</body>
+
+</html>
