@@ -37,14 +37,21 @@ function showTasks() {
     const userTasks = getTasks();
     let taskListHTML = "";
     userTasks.forEach((element, index) => {
-        taskListHTML += `<li data-index="${index}">${sanitizeInput(element)}
-                            <button aria-label="حذف کار">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
+        const completedClass = element.completed ? 'completed' : '';
+        taskListHTML += `<li data-index="${index}" class="${completedClass}">
+                            ${sanitizeInput(element.text)}
+                            <div class="task-buttons">
+                                <button class="check-btn" aria-label="تیک زدن کار">
+                                    <i class="fas fa-check"></i>
+                                </button>
+                                <button aria-label="حذف کار">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </div>
                         </li>`;
     });
     todoListContainer.innerHTML = taskListHTML;
-    numberOfTasksElement.textContent = userTasks.length;
+    numberOfTasksElement.textContent = userTasks.filter(task => !task.completed).length;
 }
 
 // Add new task
@@ -52,7 +59,7 @@ addTaskBtn.addEventListener('click', () => {
     const userTasks = getTasks();
     const userTask = inputBox.value.trim();
     if (userTask !== "") {
-        userTasks.push(userTask);
+        userTasks.push({ text: userTask, completed: false });
         if (isLocalStorageAvailable()) {
             localStorage.setItem('tasks', JSON.stringify(userTasks));
         }
@@ -68,13 +75,28 @@ inputBox.addEventListener('keypress', (e) => {
     }
 });
 
-// Delete task using event delegation
+// Handle clicks on todo list (event delegation)
 todoListContainer.addEventListener('click', (e) => {
-    if (e.target.closest('button')) {
-        const index = e.target.closest('li').dataset.index;
+    const li = e.target.closest('li');
+    if (!li) return;
+    const index = li.dataset.index;
+
+    if (e.target.closest('.check-btn')) {
+        toggleTaskCompletion(index);
+    } else if (e.target.closest('button:not(.check-btn)')) {
         deleteTask(index);
     }
 });
+
+// Toggle task completion
+function toggleTaskCompletion(index) {
+    const userTasks = getTasks();
+    userTasks[index].completed = !userTasks[index].completed;
+    if (isLocalStorageAvailable()) {
+        localStorage.setItem('tasks', JSON.stringify(userTasks));
+    }
+    showTasks();
+}
 
 // Delete single task
 function deleteTask(index) {
