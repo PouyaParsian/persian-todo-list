@@ -45,7 +45,7 @@ function showTasks() {
                                     <i class="fas fa-check"></i>
                                 </button>
                                 <button aria-label="حذف کار">
-                                    <i class="fas fa-trash-alt"></i>
+                                    <i class="fa fa-remove"></i>
                                 </button>
                             </div>
                         </li>`;

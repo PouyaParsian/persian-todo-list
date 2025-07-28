@@ -184,16 +184,11 @@ body.vazir input {
     border: none;
     cursor: pointer;
     background-color: transparent;
-    color: var(--color3);
+    color: var(--color4);
     visibility: hidden;
     font-size: 1rem;
     opacity: 0;
-    padding-right: 10px;
     transition: opacity 0.2s, visibility 0.2s;
-}
-
-.todo-list-container button.check-btn {
-    color: #2ecc71;
 }
 
 /* Info Container */
