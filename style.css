@@ -135,7 +135,7 @@ body.vazir input {
     width: 40px;
     border-radius: 3px;
     background-color: var(--color3);
-    color: var(--color4);
+    color: white;
 }
 
 /* ToDo List */
@@ -222,7 +222,7 @@ body.vazir input {
     width: 100px;
     border-radius: 3px;
     background-color: var(--color3);
-    color: var(--color4);
+    color: white;
 }
 
 /* Settings Menu */
