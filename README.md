@@ -61,7 +61,7 @@ Tested and fully functional on:
 2. Press the ➕ button or hit **Enter** to add the task.
 3. Click the ✔ **check icon** next to a task to mark it as completed (adds a strike-through).
 3. Click the 🗑️ trash icon next to a task to delete it.
-4. Use the **"پاک کردن همه"** button to clear all tasks.
+4. Use the **"حذف همه"** button to clear all tasks.
 5. Click the ⚙️ **Settings** icon (top-right corner) to:
    - Toggle between **Light** and **Dark** themes
    - Choose between **Shabnam** and **Vazir** fonts

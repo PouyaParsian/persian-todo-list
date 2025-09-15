@@ -1,13 +1,13 @@
 /* Font Definitions */
 @font-face {
     font-family: Shabnam;
-    src: url('fonts/Shabnam.woff2') format('woff2'), url('fonts/Shabnam.woff') format('woff');
+    src: url('font/Shabnam-FD.woff2') format('woff2'), url('fonts/Shabnam.woff') format('woff');
     font-display: swap;
 }
 
 @font-face {
     font-family: Vazir;
-    src: url('fonts/Vazir.woff2') format('woff2'), url('fonts/Vazir.woff') format('woff');
+    src: url('font/Vazir-FD-WOL.woff2') format('woff2'), url('fonts/Vazir.woff') format('woff');
     font-display: swap;
 }
 
@@ -17,17 +17,31 @@
 }
 
 .dark {
-    --color1: #212333;
+    --color1: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
     --color2: #2e3147;
-    --color3: #e74c3c;
+    --color3: #9e8bea;
     --color4: white;
 }
 
 .light {
-    --color1: whitesmoke;
+    --color1: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
     --color2: white;
-    --color3: #e74c3c;
-    --color4: black;
+    --color3: #a53b87;
+    --color4: rgb(50, 50, 50);
+}
+
+@supports (corner-shape: squircle) {
+
+    .input-container,
+    .info-container,
+    .info-container button,
+    .input-container button,
+    .input-container input,
+    .info-container button,
+    .todo-list-container li,
+    .menu {
+        corner-shape: squircle;
+    }
 }
 
 /* General Styles */
@@ -35,18 +49,18 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    outline: none;
 }
 
 body {
     font-family: Shabnam, Vazir, sans-serif;
     width: 100%;
     min-height: 100vh;
-    background-color: var(--color1);
+    background-image: var(--color1);
     display: flex;
     align-items: center;
     justify-content: center;
     transition: background-color 0.2s;
-    direction: rtl;
 }
 
 body.shabnam,
@@ -64,7 +78,6 @@ body.vazir input {
 .container {
     max-width: 500px;
     width: 90%;
-    direction: rtl;
     line-height: 1.8;
 }
 
@@ -85,10 +98,13 @@ body.vazir input {
 
 /* Input Container */
 .input-container {
-    background-color: var(--color2);
+    background: rgba(255, 255, 255, 0.1);
     padding: 20px;
-    border-radius: 7px;
-    box-shadow: var(--box-shadow);
+    border-radius: 40px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .input-container h2 {
@@ -102,17 +118,19 @@ body.vazir input {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 5px;
+    gap: 10px;
 }
 
 .input-container input {
     width: 100%;
     height: 35px;
     font-size: 0.95rem;
-    padding: 2px 5px;
-    border-radius: 3px;
+    padding: 2px 10px;
+    border-radius: 20px;
     border: none;
-    background-color: var(--color1);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     color: var(--color4);
 }
 
@@ -133,26 +151,34 @@ body.vazir input {
     cursor: pointer;
     height: 35px;
     width: 40px;
-    border-radius: 3px;
+    border-radius: 20px;
     background-color: var(--color3);
     color: white;
+    transition: transform 0.5s ease;
+}
+
+.input-container button:hover {
+    transform: translateY(-2px);
 }
 
 /* ToDo List */
 .todo-list-container li {
     list-style: none;
     margin-top: 15px;
-    background-color: var(--color2);
     padding: 8px 10px;
-    border-radius: 7px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     color: var(--color4);
-    box-shadow: var(--box-shadow);
     white-space: normal;
     overflow-wrap: break-word;
     overflow-x: auto;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 40px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .todo-list-container li.completed {
@@ -198,11 +224,14 @@ body.vazir input {
     justify-content: space-between;
     gap: 10px;
     margin-top: 10px;
-    background-color: var(--color2);
-    padding: 20px;
-    border-radius: 7px;
-    box-shadow: var(--box-shadow);
     direction: rtl;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 40px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .info-container p {
@@ -219,10 +248,15 @@ body.vazir input {
     border: none;
     cursor: pointer;
     height: 35px;
-    width: 100px;
-    border-radius: 3px;
+    width: 80px;
+    border-radius: 20px;
     background-color: var(--color3);
     color: white;
+    transition: transform 0.5s ease;
+}
+
+.info-container button:hover {
+    transform: translateY(-2px);
 }
 
 /* Settings Menu */
@@ -244,13 +278,16 @@ body.vazir input {
 
 .menu {
     margin-top: 30px;
-    background-color: var(--color2);
     padding: 20px;
-    border-radius: 7px;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out, margin-top 0.2s ease-in-out;
-    box-shadow: var(--box-shadow);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 40px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .menu.active {
@@ -289,27 +326,27 @@ body.vazir input {
 }
 
 .menu input[type="radio"]:checked+span {
-    box-shadow: 0 0 0 0.0625em var(--color3);
-    background-color: var(--color1);
+    box-shadow: none;
+    background: rgba(255, 255, 255, 0.4);
     z-index: 1;
-    color: var(--color3);
+    color: var(--color4);
 }
 
 label span {
     display: block;
     cursor: pointer;
-    background-color: var(--color2);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     padding: 0.375em 0.75em;
     position: relative;
-    margin-left: 0.0625em;
-    box-shadow: 0 0 0 0.0625em #4a5568;
-    color: #a0aec0;
+    color: var(--color4);
     text-align: center;
     transition: background-color 0.5s ease;
 }
 
 .light label span {
-    box-shadow: 0 0 0 0.0625em rgb(175, 175, 175);
+    box-shadow: none;
 }
 
 label:first-child span {
