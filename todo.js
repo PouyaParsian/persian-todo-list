@@ -4,6 +4,7 @@ const inputBox = document.querySelector('.input-container input');
 const todoListContainer = document.querySelector('.todo-list-container');
 const numberOfTasksElement = document.querySelector('.info-container p span');
 const removeAllTasksBtn = document.querySelector('.info-container button');
+const dialog = document.querySelector('.dialog');
 
 // Check if localStorage is available
 function isLocalStorageAvailable() {
@@ -110,10 +111,21 @@ function deleteTask(index) {
 
 // Remove all tasks
 removeAllTasksBtn.addEventListener('click', () => {
-    if (isLocalStorageAvailable()) {
-        localStorage.removeItem('tasks');
+    if (getTasks().length > 0) {
+        dialog.showModal();
     }
-    showTasks();
+});
+
+dialog.addEventListener('click', (e) => {
+    if (e.target.classList.contains('btnYes')) {
+        if (isLocalStorageAvailable()) {
+            localStorage.removeItem('tasks');
+        }
+        showTasks();
+        dialog.close();
+    } else if (e.target.classList.contains('btnNo')) {
+        dialog.close();
+    }
 });
 
 // Initial render
