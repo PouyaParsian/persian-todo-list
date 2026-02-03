@@ -4,7 +4,8 @@ const inputBox = document.querySelector('.input-container input');
 const todoListContainer = document.querySelector('.todo-list-container');
 const numberOfTasksElement = document.querySelector('.info-container p span');
 const removeAllTasksBtn = document.querySelector('.info-container button');
-const dialog = document.querySelector('.dialog');
+const removeDialog = document.querySelector('.remove-dialog');
+const editDialog = document.querySelector('.edit-dialog');
 
 // Check if localStorage is available
 function isLocalStorageAvailable() {
@@ -45,8 +46,11 @@ function showTasks() {
                                 <button class="check-btn" aria-label="تیک زدن کار">
                                     <i class="fas fa-check"></i>
                                 </button>
-                                <button aria-label="حذف کار">
-                                    <i class="fa fa-remove"></i>
+                                <button class="remove-btn" aria-label="حذف کار">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                                <button class="edit-btn" aria-label="ویرایش کار">
+                                    <i class="fa fa-pencil"></i>
                                 </button>
                             </div>
                         </li>`;
@@ -84,8 +88,10 @@ todoListContainer.addEventListener('click', (e) => {
 
     if (e.target.closest('.check-btn')) {
         toggleTaskCompletion(index);
-    } else if (e.target.closest('button:not(.check-btn)')) {
+    } else if (e.target.closest('.remove-btn')) {
         deleteTask(index);
+    } else if (e.target.closest('.edit-btn')) {
+        editTask(index);
     }
 });
 
@@ -109,22 +115,49 @@ function deleteTask(index) {
     showTasks();
 }
 
+// Edit single task
+function editTask(index) {
+    const userTasks = getTasks();
+    const taskText = userTasks[index].text;
+    const taskInput = editDialog.querySelector('input[type="text"]');
+    editDialog.showModal();
+    taskInput.value = taskText;
+    editDialog.querySelector('.btnSave').onclick = () => {
+
+    };
+    editDialog.addEventListener('click', (e) => {
+        if (e.target.classList.contains('btnCancel')) {
+            editDialog.close();
+        } else if (e.target.classList.contains('btnSave')) {
+            const newText = taskInput.value.trim();
+            if (newText !== "") {
+                userTasks[index].text = newText;
+                if (isLocalStorageAvailable()) {
+                    localStorage.setItem('tasks', JSON.stringify(userTasks));
+                }
+                showTasks();
+                editDialog.close();
+            }
+        }
+    });
+}
+
 // Remove all tasks
 removeAllTasksBtn.addEventListener('click', () => {
     if (getTasks().length > 0) {
-        dialog.showModal();
+        removeDialog.showModal();
     }
 });
 
-dialog.addEventListener('click', (e) => {
+removeDialog.addEventListener('click', (e) => {
     if (e.target.classList.contains('btnYes')) {
         if (isLocalStorageAvailable()) {
             localStorage.removeItem('tasks');
         }
         showTasks();
-        dialog.close();
+        removeDialog.close();
     } else if (e.target.classList.contains('btnNo')) {
-        dialog.close();
+        removeDialog.close();
     }
 });
 
